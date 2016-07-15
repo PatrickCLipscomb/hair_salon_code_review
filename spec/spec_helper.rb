@@ -1,6 +1,6 @@
+require('rspec')
 require('client')
 require('stylist')
-require('rspec')
 require('pg')
 require('pry')
 
