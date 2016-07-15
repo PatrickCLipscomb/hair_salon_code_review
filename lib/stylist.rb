@@ -39,4 +39,14 @@ class Stylist
     end
     searched.first()
   end
+  define_singleton_method(:find_by_id) do |id|
+    searched = nil
+    returned = Stylist.all()
+    returned.each() do |stylist|
+      if stylist.id == id
+        searched.push(stylist)
+      end
+    end
+    searched
+  end
 end

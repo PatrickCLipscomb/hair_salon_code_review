@@ -84,7 +84,7 @@
   <div class="col-sm-9">
     <h2 class="cent">List of your clients:</h2>
     <% if @clients.length != 0 %>
-      <ul class='cent'>
+      <ul class='cent well'>
         <% @clients.each() do |client| %>
           <li class='list2'><a class="link2" href="/client/<%= client.id %>"><%= client.name %></a></li>
         <% end %>
@@ -94,15 +94,25 @@
     <% end %>
   </div>
   <div class="col-sm-3">
-
+    <% if @unassigned_clients %>
+    <h4 class="cent">List of unassigned clients:</h4>
+      <ul class='cent well'>
+        <% @unassigned_clients.each() do |client| %>
+          <li class='list2'><a class="link2" href="/client/<%= client.id %>"><%= client.name %></a></li>
+        <% end %>
+      </ul>
+      <p>(Click to Assign)</p>
+    <% end %>
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-6">
-
-  </div>
   <div class="col-sm-6 col-sm-offset-6">
     <hr class="tpadding">
-    <a href="/" class="navigation">Home Page</a>
+    <p>
+      <a href="/see_unassigned_clients" class="navigation">See Unassigned Clients</a>
+    </p>
+    <p>
+      <a href="/" class="navigation">Home Page</a>
+    </p>
   </div>
 </div>

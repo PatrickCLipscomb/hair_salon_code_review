@@ -88,3 +88,26 @@ get('/stylist/:name') do
   @clients = Client.find_by_stylist(@stylist.id())
   erb(:stylist_info)
 end
+
+get('/see_unassigned_clients') do
+  @clients = Client.all()
+  @stylists = Stylist.all()
+  @unassigned_clients = Client.all()
+  assigned_clients = []
+  @unassigned_clients.each() do |client|
+    @stylists.each() do |stylist|
+      if client.stylist_id == stylist.id
+        assigned_clients.push(client)
+      end
+    end
+    assigned_clients
+  end
+  assigned_clients
+  @unassigned_clients.each() do |client|
+    if assigned_clients.include?(client)
+      @unassigned_clients.delete(client)
+    end
+  end
+  @unassigned_clients
+  erb(:add_clients)
+end
