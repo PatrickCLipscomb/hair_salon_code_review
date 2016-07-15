@@ -1,0 +1,20 @@
+<div class="col-sm-6 col-sm-offset-3">
+  <h3 class='cent'>Assign a stylist for <%= @client.name %></h3>
+  <form action="/update_client_with_stylist" method="post" class="well">
+    <input type="hidden" name="_method" value="patch">
+    <input type="hidden" name="client_name" value="<%= @client.name %>">
+    <div class="form-group row">
+      <label for="stylist_id" class="col-sm-2 form-control-label">Select Stylist</label>
+      <div class="col-sm-10">
+        <select id='stylist_id' name='stylist_id'   type='text' class="form-control">
+          <% @stylists.each() do |stylist| %>
+            <option value="<%= stylist.id()%>"> <%=   stylist.name() %> </option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-offset-1 col-sm-11">
+      <button type="submit" class="btn btn-primary">Update Client</button>
+    </div>
+  </form>
+</div>

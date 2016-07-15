@@ -94,20 +94,30 @@ get('/see_unassigned_clients') do
   @stylists = Stylist.all()
   @unassigned_clients = Client.all()
   assigned_clients = []
-  @unassigned_clients.each() do |client|
+  @clients.each() do |client|
     @stylists.each() do |stylist|
       if client.stylist_id == stylist.id
-        assigned_clients.push(client)
+        @unassigned_clients.delete(client)
       end
     end
-    assigned_clients
+    @unassigned_clients
   end
-  assigned_clients
-  @unassigned_clients.each() do |client|
-    if assigned_clients.include?(client)
-      @unassigned_clients.delete(client)
-    end
-  end
-  @unassigned_clients
+  erb(:add_clients)
+end
+
+get('/client/:name') do
+  name = params.fetch('name')
+  @client = Client.find_by_name(name)
+  @stylists = Stylist.all()
+  erb(:client_info)
+end
+
+patch('/update_client_with_stylist') do
+  stylist_id = params.fetch('stylist_id').to_i()
+  client_name = params.fetch('client_name')
+  client = Client.find_by_name(client_name)
+  client.update(client_name, stylist_id)
+  @clients = Client.all()
+  @stylists = Stylist.all()
   erb(:add_clients)
 end

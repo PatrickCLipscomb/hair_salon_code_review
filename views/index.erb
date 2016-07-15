@@ -2,7 +2,7 @@
 <div class="col-sm-6">
   <h2>List of your stylists:</h2>
   <% if @stylists %>
-    <ul class='cent'>
+    <ul class='cent well'>
       <% @stylists.each() do |stylist| %>
         <li class='list'><a class='link' href="/stylist/<%= stylist.name %>"><%= stylist.name %></a></li>
       <% end %>
@@ -17,9 +17,9 @@
 <div class="col-sm-6">
   <h2>List of your clients:</h2>
   <% if @clients %>
-    <ul class='cent'>
+    <ul class='cent well'>
       <% @clients.each() do |client| %>
-        <li class="list2"><a class="link2" href="/client/<%= client.id %>"><%= client.name %></a></li>
+        <li class="list2"><p class="link2"><%= client.name %></p></li>
       <% end %>
     </ul>
   <% else %>

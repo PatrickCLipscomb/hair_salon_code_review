@@ -64,7 +64,7 @@
 <div class="col-sm-6">
   <h2 class="cent">List of your stylists:</h2>
   <% if @stylists.length != 0 %>
-    <ul class='cent'>
+    <ul class='cent well'>
       <% @stylists.each() do |stylist| %>
         <li class='list'><a class="link" href="/stylist/<%= stylist.name %>"><%= stylist.name %></a></li>
       <% end %>
