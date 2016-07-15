@@ -1,6 +1,43 @@
 <div class="col-sm-6">
-  <h2>Add a new stylist</h2>
-  <form action="/new_stylist" method="post">
+  <h2 class="cent">Add a new stylist</h2>
+  <form action="/new_stylist" method="post" class="well">
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 form-control-label">Stylist Name</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="name" value="">
+      </div>
+    </div>
+    <div class="col-sm-offset-1 col-sm-11">
+      <button type="submit" class="btn btn-success">Add Stylist</button>
+    </div>
+  </form>
+  <hr>
+  <% if @stylist %>
+    <h4 class="cent tpadding">Stylist: <%= @stylist.name %> added</h4>
+    <hr class="tpadding">
+  <% end %>
+
+  <h2 class="cent">Remove a Stylist</h2>
+  <form action="/delete_stylist" method="post" class="well">
+    <input type="hidden" name="_method" value="delete">
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 form-control-label">Stylist Name</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="name" value="">
+      </div>
+    </div>
+    <div class="col-sm-offset-1 col-sm-11">
+      <button type="submit" class="btn btn-danger">Remove Stylist</button>
+    </div>
+  </form>
+  <hr>
+  <% if @stylist_deleted %>
+    <h4 class="cent tpadding">Stylist: <%= @stylist_deleted.name %> deleted</h4>
+    <hr class-"tpadding">
+  <% end %>
+
+  <h2 class="cent">Update a Stylist</h2>
+  <form action="/update_stylist" method="post" class="well">
     <input type="hidden" name="_method" value="patch">
     <div class="form-group row">
       <label for="name" class="col-sm-2 form-control-label">Stylist Name</label>
@@ -8,20 +45,32 @@
         <input class="form-control" type="text" name="name" value="">
       </div>
     </div>
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-success">Add Stylist</button>
+    <div class="form-group row">
+      <label for="new_name" class="col-sm-2 form-control-label">New Name</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="new_name" value="">
+      </div>
+    </div>
+    <div class="col-sm-offset-1 col-sm-11">
+      <button type="submit" class="btn btn-primary">Update Stylist</button>
     </div>
   </form>
+  <% if @stylist_updated %>
+    <hr>
+    <h4 class="cent tpadding">Stylist: <%= @old_name %> has been updated to <%= @stylist_updated.name %></h4>
+  <% end %>
 </div>
 <div class="col-sm-6">
-  <h2>List of your stylists:</h2>
-  <% if @stylists %>
+  <h2 class="cent">List of your stylists:</h2>
+  <% if @stylists.length != 0 %>
     <ul>
       <% @stylists.each() do |stylist| %>
-        <li><a href="/stylist/<%= stylist.id %>"><%= stylist.name %></a></li>
+        <li class='list'><a class="link" href="/stylist/<%= stylist.id %>"><%= stylist.name %></a></li>
       <% end %>
     </ul>
   <% else %>
-    <h4>You don't have any stylists yet.</h4>
+    <h4 class="cent">You don't have any stylists yet.</h4>
   <% end %>
+  <hr class="tpadding">
+  <a href="/" class="navigation">Home Page</a>
 </div>

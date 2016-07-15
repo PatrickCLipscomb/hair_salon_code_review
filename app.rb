@@ -18,3 +18,34 @@ get('/add_new_stylists') do
   @stylists = Stylist.all()
   erb(:add_stylist)
 end
+
+post('/new_stylist') do
+  name = params.fetch('name')
+  @stylist = Stylist.new({:name => name})
+  @stylist.save()
+  @stylists = Stylist.all()
+  erb(:add_stylist)
+end
+
+delete('/delete_stylist') do
+  name = params.fetch('name')
+  stylist = Stylist.find_by_name(name)
+  @stylist_deleted = stylist[0]
+  stylist.each() do |to_delete|
+    to_delete.delete()
+  end
+  @stylists = Stylist.all()
+  erb(:add_stylist)
+end
+
+patch('/update_stylist') do
+  name = params.fetch('name')
+  new_name = params.fetch('new_name')
+  stylist = Stylist.find_by_name(name)
+  @stylist_updated = nil
+  stylist[0] = @stylist_updated
+  @stylist_updated.name = @old_name
+  @stylist_updated.update(new_name)
+  @stylists = Stylist.all()
+  erb(:add_stylist)
+end

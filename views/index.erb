@@ -3,14 +3,14 @@
   <% if @stylists %>
     <ul>
       <% @stylists.each() do |stylist| %>
-        <li><a href="/stylist/<%= stylist.id %>"><%= stylist.name %></a></li>
+        <li class='list'><a class='link' href="/stylist/<%= stylist.id %>"><%= stylist.name %></a></li>
       <% end %>
     </ul>
   <% else %>
     <h4>You don't have any stylists yet.</h4>
   <% end %>
-  <hr>
-  <a href="/add_new_stylists" class="btn-lrg">Add some stylists</a>
+  <hr class="tpadding">
+  <a class="navigation" href="/add_new_stylists" class="btn-lrg">Add some stylists</a>
 </div>
 
 <div class="col-sm-6">
@@ -24,6 +24,6 @@
   <% else %>
     <h4>You don't have any clients yet.</h4>
   <% end %>
-  <hr>
-  <a href="/add_new_clients" class="btn-lrg">Add some clients</a>
+  <hr class="tpadding">
+  <a class="navigation" href="/add_new_clients" class="btn-lrg">Add some clients</a>
 </div>

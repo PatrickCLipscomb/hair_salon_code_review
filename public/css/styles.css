@@ -3,3 +3,29 @@
   font-weight: bolder;
   text-align: center;
 }
+
+.cent {
+  display: block;
+  align-items: center;
+  margin: 20px;
+}
+
+.tpadding {
+  margin-top: 50px;
+}
+
+.link {
+  font-family: cursive;
+  margin: 20px;
+  font-size: 20px
+}
+
+.list {
+  list-style-image: url('http://beautyrefugesalon.com/wp-content/uploads/2016/02/scissors_icon_small.png');
+}
+
+.navigation {
+  font-family: monospace;
+  font-size: 30px;
+  font-weight: bolder;
+}
