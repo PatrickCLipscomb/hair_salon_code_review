@@ -4,6 +4,12 @@
   text-align: center;
 }
 
+.center {
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: bolder;
+}
+
 .cent {
   display: block;
   align-items: center;
@@ -20,8 +26,18 @@
   font-size: 20px
 }
 
+.link2 {
+  font-family: monospace;
+  margin: 20px;
+  font-size: 20px
+}
+
 .list {
   list-style-image: url('http://beautyrefugesalon.com/wp-content/uploads/2016/02/scissors_icon_small.png');
+}
+
+.list2 {
+  list-style-image: url('https://elearning.connectwise.com/files/2613/2190/5625/icon_smallMoney.jpg')
 }
 
 .navigation {

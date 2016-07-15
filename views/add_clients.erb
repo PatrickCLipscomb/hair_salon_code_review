@@ -1,12 +1,12 @@
 <div class="col-sm-6">
-  <h2>Choose a stylist to add a client to</h2>
+  <h2>Choose a client to add a client to</h2>
   <form class="well" action="/new_client" method="post">
     <div class="form-group row">
-      <label for="stylist_id" class='col-sm-2 form-control-label'>Sylist</label>
+      <label for="stylist_id" class="col-sm-2 form-control-label">Select Stylist</label>
       <div class="col-sm-10">
-        <select id="stylist_id" name="stylist_id" class="form-control" type="text">
+        <select id='stylist_id' name='stylist_id'   type='text' class="form-control">
           <% @stylists.each() do |stylist| %>
-            <option value="<%= stylist.id() %>"><%= stylist.name() %></option
+            <option value="<%= stylist.id()%>"> <%=   stylist.name() %> </option>
           <% end %>
         </select>
       </div>
@@ -21,4 +21,88 @@
       <button type="submit" class="btn btn-success">Add Client</button>
     </div>
   </form>
+  <% if @client %>
+    <h4 class="cent tpadding">Stylist: <%= @client.name %> added</h4>
+    <hr class="tpadding">
+  <% end %>
+
+  <h2 class="cent">Remove a Client</h2>
+  <form action="/delete_client" method="post" class="well">
+    <input type="hidden" name="_method" value="delete">
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 form-control-label">Client Name</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="name" value="">
+      </div>
+    </div>
+    <div class="col-sm-offset-1 col-sm-11">
+      <button type="submit" class="btn btn-danger">Remove Client</button>
+    </div>
+  </form>
+  <hr>
+  <% if @client_deleted %>
+    <h4 class="cent tpadding">Client: <%= @client_deleted.name %> deleted</h4>
+    <hr class-"tpadding">
+  <% end %>
+
+  <h2 class="cent">Update a Client</h2>
+  <form action="/update_client" method="post" class="well">
+    <input type="hidden" name="_method" value="patch">
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 form-control-label">Client Name</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="name" value="">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="new_name" class="col-sm-2 form-control-label">New Name</label>
+      <div class="col-sm-10">
+        <input class="form-control" type="text" name="new_name" value="">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="stylist_id" class="col-sm-2 form-control-label">Select Stylist</label>
+      <div class="col-sm-10">
+        <select id='stylist_id' name='stylist_id'   type='text' class="form-control">
+          <% @stylists.each() do |stylist| %>
+            <option value="<%= stylist.id()%>"> <%=   stylist.name() %> </option>
+          <% end %>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-offset-1 col-sm-11">
+      <button type="submit" class="btn btn-primary">Update Client</button>
+    </div>
+  </form>
+  <hr>
+  <% if @client_updated %>
+    <h4 class="cent tpadding">Client: <%= @old_name %> has been updated to <%= @client_updated.name %></h4>
+    <hr class-"tpadding">
+  <% end %>
+</div>
+<div class="col-sm-6">
+  <div class="col-sm-9">
+    <h2 class="cent">List of your clients:</h2>
+    <% if @clients.length != 0 %>
+      <ul class='cent'>
+        <% @clients.each() do |client| %>
+          <li class='list2'><a class="link2" href="/client/<%= client.id %>"><%= client.name %></a></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h4 class="cent">You don't have any clients yet.</h4>
+    <% end %>
+  </div>
+  <div class="col-sm-3">
+
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+
+  </div>
+  <div class="col-sm-6 col-sm-offset-6">
+    <hr class="tpadding">
+    <a href="/" class="navigation">Home Page</a>
+  </div>
 </div>

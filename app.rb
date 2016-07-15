@@ -44,3 +44,47 @@ patch('/update_stylist') do
   @stylists = Stylist.all()
   erb(:add_stylist)
 end
+
+get('/add_new_clients') do
+  @clients = Client.all()
+  @stylists = Stylist.all()
+  erb(:add_clients)
+end
+
+post('/new_client') do
+  name = params.fetch('name')
+  stylist_id = params.fetch('stylist_id').to_i
+  @client = Client.new({:name => name, :stylist_id => stylist_id})
+  @client.save()
+  @stylists = Stylist.all()
+  @clients = Client.all()
+  erb(:add_clients)
+end
+
+delete('/delete_client') do
+  name = params.fetch('name')
+  @client_deleted = Client.find_by_name(name)
+  @client_deleted.delete()
+  @clients = Client.all()
+  @stylists = Stylist.all()
+  erb(:add_clients)
+end
+
+patch('/update_client') do
+  name = params.fetch('name')
+  new_name = params.fetch('new_name')
+  stylist_id = params.fetch('stylist_id').to_i
+  @client_updated = Client.find_by_name(name)
+  @old_name = @client_updated.name()
+  @client_updated.update(new_name, stylist_id)
+  @clients = Client.all()
+  @stylists = Stylist.all()
+  erb(:add_clients)
+end
+
+get('/stylist/:name') do
+  name = params.fetch('name')
+  @stylist = Stylist.find_by_name(name)
+  @clients = Client.find_by_stylist(@stylist.id())
+  erb(:stylist_info)
+end

@@ -32,4 +32,24 @@ class Client
   define_method(:delete) do
     DB.exec("DELETE FROM clients WHERE id = #{self.id}")
   end
+  define_singleton_method(:find_by_name) do |name|
+    searched = []
+    returned = Client.all()
+    returned.each() do |client|
+      if client.name == name
+        searched.push(client)
+      end
+    end
+    searched.first()
+  end
+  define_singleton_method(:find_by_stylist) do |id|
+    searched = []
+    returned = Client.all()
+    returned.each() do |client|
+      if client.stylist_id == id
+        searched.push(client)
+      end
+    end
+    searched
+  end
 end

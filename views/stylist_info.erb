@@ -1,0 +1,14 @@
+<div class="col-sm-6 col-sm-offset-3">
+  <h2 class='cent'>Clients of <%= @stylist.name() %>:</h2>
+  <% if @clients.length != 0 %>
+    <ul class='cent'>
+      <% @clients.each() do |client| %>
+        <li class='list2'><a class="link2" href="/client/<%= client.id %>"><%= client.name %></a></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <h4 class="cent"><%= @stylist.name() %> doesn't have any clients yet.</h4>
+  <% end %>
+  <hr class="tpadding">
+  <a href="/add_new_stylists" class="navigation cent">Stylists' Page</a>
+</div>

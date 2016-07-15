@@ -64,14 +64,14 @@
 <div class="col-sm-6">
   <h2 class="cent">List of your stylists:</h2>
   <% if @stylists.length != 0 %>
-    <ul>
+    <ul class='cent'>
       <% @stylists.each() do |stylist| %>
-        <li class='list'><a class="link" href="/stylist/<%= stylist.id %>"><%= stylist.name %></a></li>
+        <li class='list'><a class="link" href="/stylist/<%= stylist.name %>"><%= stylist.name %></a></li>
       <% end %>
     </ul>
   <% else %>
     <h4 class="cent">You don't have any stylists yet.</h4>
   <% end %>
   <hr class="tpadding">
-  <a href="/" class="navigation">Home Page</a>
+  <a href="/" class="navigation cent">Home Page</a>
 </div>
