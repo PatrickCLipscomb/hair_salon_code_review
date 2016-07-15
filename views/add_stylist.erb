@@ -55,9 +55,10 @@
       <button type="submit" class="btn btn-primary">Update Stylist</button>
     </div>
   </form>
+  <hr>
   <% if @stylist_updated %>
-    <hr>
     <h4 class="cent tpadding">Stylist: <%= @old_name %> has been updated to <%= @stylist_updated.name %></h4>
+    <hr class-"tpadding">
   <% end %>
 </div>
 <div class="col-sm-6">

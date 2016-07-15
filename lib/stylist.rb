@@ -37,6 +37,6 @@ class Stylist
         searched.push(stylist)
       end
     end
-    searched
+    searched.first()
   end
 end
