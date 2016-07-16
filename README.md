@@ -19,6 +19,10 @@ Reflect an introduction to Ruby, Sinatra, BDD, SQL (Postgres), database relation
 - capybara, rspec
 - SQL
 
+Deployed to:
+
+_Heroku_ at: https://polar-meadow-56716.herokuapp.com/
+
 ### Database Schema:
 
 ```sql
