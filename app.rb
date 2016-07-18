@@ -20,7 +20,7 @@ get('/add_new_stylists') do
 end
 
 post('/new_stylist') do
-  name = params.fetch('name')
+  name = params.fetch('create_name')
   @stylist = Stylist.new({:name => name})
   @stylist.save()
   @stylists = Stylist.all()
@@ -52,8 +52,9 @@ get('/add_new_clients') do
 end
 
 post('/new_client') do
-  name = params.fetch('name')
-  stylist_id = params.fetch('stylist_id').to_i
+  name = params.fetch('new_client_name')
+  stylist_name = params.fetch('stylist_id')
+  stylist_id = Stylist.find_by_name(stylist_name)
   @client = Client.new({:name => name, :stylist_id => stylist_id})
   @client.save()
   @stylists = Stylist.all()
