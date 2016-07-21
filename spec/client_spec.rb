@@ -44,4 +44,31 @@ describe(Client) do
       expect(Client.all()).to(eq([client_test2]))
     end
   end
+  describe('#find_by_id') do
+    it "finds a selected client via the client's id" do
+      client_test = Client.new({:name => "pedro", :stylist_id => '3'})
+      client_test2 = Client.new({:name => "peter", :stylist_id => '2'})
+      client_test.save()
+      client_test2.save()
+      expect(Client.find_by_id(client_test2.id())).to(eq(client_test2))
+    end
+  end
+  describe('#find_by_stylist') do
+    it "finds a selected client via the client's stylist id" do
+      client_test = Client.new({:name => "pedro", :stylist_id => '3'})
+      client_test2 = Client.new({:name => "peter", :stylist_id => '2'})
+      client_test.save()
+      client_test2.save()
+      expect(Client.find_by_stylist(3)).to(eq([client_test]))
+    end
+  end
+  describe('#find_by_name') do
+    it "finds a selected client via the client's id" do
+      client_test = Client.new({:name => "pedro", :stylist_id => '3'})
+      client_test2 = Client.new({:name => "peter", :stylist_id => '2'})
+      client_test.save()
+      client_test2.save()
+      expect(Client.find_by_name('pedro')).to(eq(client_test))
+    end
+  end
 end

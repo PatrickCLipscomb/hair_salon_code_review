@@ -1,6 +1,6 @@
 <div class="col-sm-6 col-sm-offset-3">
   <h3 class='cent'>Assign a stylist for <%= @client.name %></h3>
-  <form action="/update_client_with_stylist" method="post" class="well">
+  <form action="/clients/stylist" method="post" class="well">
     <input type="hidden" name="_method" value="patch">
     <input type="hidden" name="client_name" value="<%= @client.name %>">
     <div class="form-group row">

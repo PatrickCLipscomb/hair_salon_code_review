@@ -14,12 +14,12 @@ get('/') do
   erb(:index)
 end
 
-get('/add_new_stylists') do
+get('/stylists/new') do
   @stylists = Stylist.all()
   erb(:add_stylist)
 end
 
-post('/new_stylist') do
+post('/stylists') do
   name = params.fetch('create_name')
   @stylist = Stylist.new({:name => name})
   @stylist.save()
@@ -27,7 +27,7 @@ post('/new_stylist') do
   erb(:add_stylist)
 end
 
-delete('/delete_stylist') do
+delete('/stylists') do
   name = params.fetch('name')
   @stylist_deleted = Stylist.find_by_name(name)
   @stylist_deleted.delete()
@@ -35,7 +35,7 @@ delete('/delete_stylist') do
   erb(:add_stylist)
 end
 
-patch('/update_stylist') do
+patch('/stylists') do
   name = params.fetch('name')
   new_name = params.fetch('new_name')
   @stylist_updated = Stylist.find_by_name(name)
@@ -45,16 +45,15 @@ patch('/update_stylist') do
   erb(:add_stylist)
 end
 
-get('/add_new_clients') do
+get('/clients/new') do
   @clients = Client.all()
   @stylists = Stylist.all()
   erb(:add_clients)
 end
 
-post('/new_client') do
+post('/clients') do
   name = params.fetch('new_client_name')
-  stylist_name = params.fetch('stylist_id')
-  stylist_id = Stylist.find_by_name(stylist_name)
+  stylist_id = params.fetch('stylist_id').to_i()
   @client = Client.new({:name => name, :stylist_id => stylist_id})
   @client.save()
   @stylists = Stylist.all()
@@ -62,7 +61,7 @@ post('/new_client') do
   erb(:add_clients)
 end
 
-delete('/delete_client') do
+delete('/clients') do
   name = params.fetch('name')
   @client_deleted = Client.find_by_name(name)
   @client_deleted.delete()
@@ -71,7 +70,7 @@ delete('/delete_client') do
   erb(:add_clients)
 end
 
-patch('/update_client') do
+patch('/clients') do
   name = params.fetch('name')
   new_name = params.fetch('new_name')
   stylist_id = params.fetch('stylist_id').to_i
@@ -90,7 +89,7 @@ get('/stylist/:name') do
   erb(:stylist_info)
 end
 
-get('/see_unassigned_clients') do
+get('/clients/unassigned') do
   @clients = Client.all()
   @stylists = Stylist.all()
   @unassigned_clients = Client.all()
@@ -106,19 +105,17 @@ get('/see_unassigned_clients') do
   erb(:add_clients)
 end
 
-get('/client/:name') do
-  name = params.fetch('name')
-  @client = Client.find_by_name(name)
+get('/client/:id') do
+  client_id = params.fetch('id').to_i()
+  @client = Client.find_by_id(client_id)
   @stylists = Stylist.all()
   erb(:client_info)
 end
 
-patch('/update_client_with_stylist') do
+patch('/clients/stylist') do
   stylist_id = params.fetch('stylist_id').to_i()
   client_name = params.fetch('client_name')
   client = Client.find_by_name(client_name)
   client.update(client_name, stylist_id)
-  @clients = Client.all()
-  @stylists = Stylist.all()
-  erb(:add_clients)
+  redirect('/')
 end

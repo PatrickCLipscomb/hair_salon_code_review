@@ -20,7 +20,7 @@ class Stylist
     stylists
   end
   define_method(:==) do |another_stylist|
-    (self.id == another_stylist.id) && (self.name == another_stylist.name)
+    (self.id() == another_stylist.id()) && (self.name == another_stylist.name)
   end
   define_method(:update) do |updated_name|
     @name = updated_name
@@ -30,21 +30,21 @@ class Stylist
     DB.exec("DELETE FROM stylists WHERE id = #{self.id}")
   end
   define_singleton_method(:find_by_name) do |name|
-    searched = []
+    searched = nil
     returned = Stylist.all()
     returned.each() do |stylist|
       if stylist.name == name
-        searched.push(stylist)
+        searched = stylist
       end
     end
-    searched.first()
+    searched
   end
   define_singleton_method(:find_by_id) do |id|
     searched = nil
     returned = Stylist.all()
     returned.each() do |stylist|
       if stylist.id == id
-        searched.push(stylist)
+        searched = stylist
       end
     end
     searched

@@ -1,6 +1,6 @@
 <div class="col-sm-6">
   <h2 class="cent">Add a new stylist</h2>
-  <form action="/new_stylist" method="post" class="well">
+  <form action="/stylists" method="post" class="well">
     <div class="form-group row">
       <label for="create_name" class="col-sm-2 form-control-label">Stylist Name</label>
       <div class="col-sm-10">
@@ -18,7 +18,7 @@
   <% end %>
 
   <h2 class="cent">Remove a Stylist</h2>
-  <form action="/delete_stylist" method="post" class="well">
+  <form action="/stylists" method="post" class="well">
     <input type="hidden" name="_method" value="delete">
     <div class="form-group row">
       <label for="name" class="col-sm-2 form-control-label">Stylist Name</label>
@@ -37,7 +37,7 @@
   <% end %>
 
   <h2 class="cent">Update a Stylist</h2>
-  <form action="/update_stylist" method="post" class="well">
+  <form action="/stylists" method="post" class="well">
     <input type="hidden" name="_method" value="patch">
     <div class="form-group row">
       <label for="name" class="col-sm-2 form-control-label">Stylist Name</label>

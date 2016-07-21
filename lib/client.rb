@@ -52,4 +52,14 @@ class Client
     end
     searched
   end
+  define_singleton_method(:find_by_id) do |id|
+    searched = nil
+    returned = Client.all()
+    returned.each() do |client|
+      if client.id == id
+        searched = client
+      end
+    end
+    searched
+  end
 end

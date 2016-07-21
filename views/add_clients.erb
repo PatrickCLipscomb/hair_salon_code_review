@@ -1,6 +1,6 @@
 <div class="col-sm-6">
-  <h2>Choose a client to add a client to</h2>
-  <form class="well" action="/new_client" method="post">
+  <h2>Choose a stylist to add a client to</h2>
+  <form class="well" action="/clients" method="post">
     <div class="form-group row">
       <label for="stylist_id" class="col-sm-2 form-control-label">Select Stylist</label>
       <div class="col-sm-10">
@@ -27,7 +27,7 @@
   <% end %>
 
   <h2 class="cent">Remove a Client</h2>
-  <form action="/delete_client" method="post" class="well">
+  <form action="/clients" method="post" class="well">
     <input type="hidden" name="_method" value="delete">
     <div class="form-group row">
       <label for="name" class="col-sm-2 form-control-label">Client Name</label>
@@ -46,7 +46,7 @@
   <% end %>
 
   <h2 class="cent">Update a Client</h2>
-  <form action="/update_client" method="post" class="well">
+  <form action="/clients" method="post" class="well">
     <input type="hidden" name="_method" value="patch">
     <div class="form-group row">
       <label for="name" class="col-sm-2 form-control-label">Client Name</label>
@@ -99,7 +99,7 @@
       <h4 class="cent">List of unassigned clients:</h4>
         <ul class='cent well'>
           <% @unassigned_clients.each() do |client| %>
-            <li class='list2'><a class="link2" href="/client/<%= client.name %>"><%= client.name %></a></li>
+            <li class='list2'><a class="link2" href="/client/<%= client.id() %>"><%= client.name %></a></li>
           <% end %>
         </ul>
         <p>(Click Client to Assign)</p>
@@ -113,7 +113,7 @@
   <div class="col-sm-6 col-sm-offset-6">
     <hr class="tpadding">
     <p>
-      <a href="/see_unassigned_clients" class="navigation">See Unassigned Clients</a>
+      <a href="/clients/unassigned" class="navigation">See Unassigned Clients</a>
     </p>
     <p>
       <a href="/" class="navigation">Home Page</a>
